@@ -3,6 +3,7 @@ from flask import jsonify, abort, make_response
 from forms import ItemForm
 from models import items
 from app import app
+import sqlite3
 
 app.config["SECRET_KEY"] = "nasturcja"
 
@@ -33,28 +34,20 @@ def item_details(item_id):
         'year': item[4]
     }
 
+    conn = sqlite3.connect('multimedia.db')
     form = ItemForm(data=item_dict)
-
+    checked = request.form.get("delete_checkbox")
     if request.method == "POST":
         if form.validate_on_submit():
-            items.update(item, tuple(form.data.values())[:4])
+            if checked is None:
+                items.update(item, tuple(form.data.values())[:4])
+                print('status UPDATE: ', checked, item_id, conn)
+            elif checked == '1':
+                items.delete(conn, item_id)
+                print('status: ', checked, item_id, conn)
         return redirect(url_for("items_list"))
     return render_template("item.html", form=form, item_id=item_id)
-
-
-@app.route("/items/<int:item_id>", methods=['DELETE'])
-def delete_item(conn, item_id):
-    if request.form.get('delete_checkbox') == '1':
-        if request.get('submit'):
-            print("TEST")
-    #         with conn:
-    #             result = items.delete(conn, item_id)
-    #             if not result:
-    #                 abort(404)
-    # return jsonify({'result': result})
-
 
 if __name__ == "__main__":
 
     app.run(debug=True)
-

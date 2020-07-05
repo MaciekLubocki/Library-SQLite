@@ -59,9 +59,9 @@ class Items:
         :param id: id of the task
         :return:
         """
-        sql = 'DELETE FROM multi WHERE id={id}'
+        
         cur = conn.cursor()
-        cur.execute(sql, (id,))
+        cur.execute('DELETE FROM multi WHERE id=?', (id,))
         conn.commit()
         print("Deleted")
     

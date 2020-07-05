@@ -1,0 +1,35 @@
+body {
+    background: linear-gradient(54deg, rgba(87,87,87,1) 0%, rgba(138,152,151,1) 42%, rgba(156,136,38,1) 85%, rgba(213,204,185,1) 100%);
+    color: rgb(255, 255, 255);
+    height: 100vh;
+}
+
+.container {
+max-width: 1400px;
+margin:auto;
+position:relative;
+display:flex;
+justify-content: center;
+text-align: center;
+flex-direction: column;
+}
+
+.content {
+display:flex;
+justify-content: center;
+text-align: left;
+flex-direction: column;
+}
+
+h2 {
+    font-family: 'Times New Roman', Times, serif
+}
+
+td,
+th {
+font-family: Arial, Helvetica, sans-serif;
+}
+
+td a {
+color: #fff;    
+}

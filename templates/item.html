@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item details:</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2> Update details: </h2>
+    <form method="POST" action="/item/{{ item_id }}/">
+        {{ form.hidden_tag() }}
+        <table>
+            {% for field in form if field.widget.input_type != 'hidden' %}
+                <tr>
+                    <th>{{ field.label }} {% if field.flags.required %}*{% endif %}</th>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <h4> Click below to delete item: </h4>
+        <input type="checkbox" name="delete_checkbox" value="0" unchecked> Delete record
+        <br><br>
+        <input type="submit" value="Go">
+    </form>
+</body>
+</html>
+
+

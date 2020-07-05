@@ -1,5 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
-from flask import jsonify, abort, make_response
+from flask import request, render_template, redirect, url_for
 from forms import ItemForm
 from models import items
 from app import app
@@ -47,6 +46,7 @@ def item_details(item_id):
                 print('status: ', checked, item_id, conn)
         return redirect(url_for("items_list"))
     return render_template("item.html", form=form, item_id=item_id)
+
 
 if __name__ == "__main__":
 

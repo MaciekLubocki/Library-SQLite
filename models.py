@@ -59,12 +59,12 @@ class Items:
         :param id: id of the task
         :return:
         """
-        
+
         cur = conn.cursor()
         cur.execute('DELETE FROM multi WHERE id=?', (id,))
         conn.commit()
         print("Deleted")
-    
+
 
 db_file = "multimedia.db"
 items = Items(db_file)
